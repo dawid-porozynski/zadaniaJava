@@ -1,4 +1,5 @@
-abstract class  Machine {
+//zadanie1
+class  Machine {
     protected String Brand;
     protected String Name;
     protected int Engine_Capacity;
@@ -6,10 +7,11 @@ abstract class  Machine {
     protected enum Engine_Type {
         DIESEL,
         GAS,
-        GASOLINE,
+        ELECTRIC,
         HYBRID
     }
 
+    //zadanie2
     class Locomotive extends Machine {
         private int Speed;
         private String Load;
@@ -18,7 +20,6 @@ abstract class  Machine {
             Name = "TRAXX MS";
             Brand = " Alstom";
             Engine_Capacity = 2300;
-
             Speed = 140;
             Load = "Pasażerowie";
         }
@@ -33,6 +34,7 @@ abstract class  Machine {
         }
     }
 
+    //zadnie3
     class Lawnmover extends Machine {
         private boolean isMelekser;
         private boolean isDrive;
@@ -45,7 +47,17 @@ abstract class  Machine {
             //Engine_type
             isMelekser = true;
             isDrive = true;
+
         }
+
+        public void setCzyMelekser(boolean isMelekser) {
+            this.isMelekser = isMelekser;
+        }
+
+        public void setCzyNaped(boolean isDrive) {
+            this.isDrive = isDrive;
+        }
+
 
         public void Print_lawnmover() {
             System.out.println("Nazwa kosiarki: " + Name);
@@ -59,33 +71,33 @@ abstract class  Machine {
         }
     }
 
+    //zadanie4
     class Vehicle extends Machine {
         private double Power;
         private double Torque; //moment obrotowy
-        int Vehicle_Number;
-        int Max_Vehicle_Number = 5;
+        private static int maxLiczbaPojazdow = 12;
+        private static int nrPojazdu = 0;
 
         public Vehicle() {
+            nrPojazdu++;
+            if (nrPojazdu > maxLiczbaPojazdow) {
+                System.out.println("Osiągnięto maksymalną liczbę pojazdów.");
+                nrPojazdu--;
+            } else {
+                System.out.println("Utworzono pojazd nr " + nrPojazdu + " z " + maxLiczbaPojazdow);
+            }
             Name = "Ford Mondeo Vignale 2.0";
             Brand = "Ford";
             Engine_Capacity = 1997;
             //Engine_type
             Power = 180;
             Torque = 400;
-            Vehicle_Number = 1;
-            for (int i = 1; i <= Vehicle_Number; i++) {
-                if (Max_Vehicle_Number < Vehicle_Number) {
-                    System.out.println("Numer pojazdu jest za duży");
-                    System.exit(0);
-                } else if (i == Vehicle_Number) {
-                    Vehicle_Number = i;
-                }
-            }
+
 
         }
 
         public void Print_vehicle() {
-            System.out.println("pojazd " + Vehicle_Number + " z " + Max_Vehicle_Number);
+            System.out.println("pojazd " + nrPojazdu + " z " + maxLiczbaPojazdow);
             System.out.println("Nazwa pojazdu: " + Name);
             System.out.println("Marka pojazdu: " + Brand);
             System.out.println("Pojemnosc silnika : " + Engine_Capacity + " cm3");
@@ -96,26 +108,30 @@ abstract class  Machine {
 
         }
 
+        //zadanie5
+        enum Segment {
+            A,
+            B,
+            C,
+            D,
+            E,
+            F
+        }
+
         class Cars extends Vehicle {
-            private String segment;
-            private int VIN;//17 znaków
+            private Segment segment;
+            private String VIN;//17 znaków
 
             public Cars() {
-//                Name = "Ford Mondeo Vignale 2.0";
-//                Brand = "Ford";
-//                Engine_Capacity =1997;
-//                //Engine_type
-//                Power=180;
-//                Torque=400;
-//                Vehicle_Number=1;
-//                for (int i = 1; i <= Vehicle_Number; i++) {
-//                    if (Max_Vehicle_Number<Vehicle_Number) {
-//                        System.out.println("Numer pojazdu jest za duży");
-//                        System.exit(0);
-//                    } else if (i==Vehicle_Number) {
-//                        Vehicle_Number=i;
-//                    }
-//                }
+                Name = "Ford Mondeo Vignale 2.0";
+                Brand = "Ford";
+                Engine_Capacity = 1997;
+                //Engine_type=DIESEL;
+                Power = 180;
+                Torque = 400;
+                VIN = "VF1RFB00059365541";
+                segment = Segment.F;
+
             }
 
             public void Print_cars() {
@@ -125,46 +141,65 @@ abstract class  Machine {
                 System.out.println("rodzaj silnika : " + Engine_Type.DIESEL);
                 System.out.println("Moc : " + Power + "Km");
                 System.out.println("Moment obrotowy : " + Torque + "Nm");
-
+                System.out.println("Nr VIN: " + VIN);
+                System.out.println("segment: " + segment);
 
             }
+        }
 
-            class Two_wheeler extends Vehicle {
-                private String type;
-                public Two_wheeler() {
-//                Name = "Ford Mondeo Vignale 2.0";
-//                Brand = "Ford";
-//                Engine_Capacity =1997;
+        enum JednosladTyp {
+            ROWER,
+            HULAJNOGA,
+            SKUTER,
+            MOTOROWER
+        }
+
+        class Two_wheeler extends Vehicle {
+            private JednosladTyp type;
+            private boolean hamulec;
+
+            public Two_wheeler() {
+                Name = "xs232";
+                Brand = "Kawasaki";
+                Engine_Capacity = 1997;
 //                //Engine_type
-//                Power=180;
-//                Torque=400;
-//                Vehicle_Number=1;
-//                for (int i = 1; i <= Vehicle_Number; i++) {
-//                    if (Max_Vehicle_Number<Vehicle_Number) {
-//                        System.out.println("Numer pojazdu jest za duży");
-//                        System.exit(0);
-//                    } else if (i==Vehicle_Number) {
-//                        Vehicle_Number=i;
-//                    }
-//                }
-                }
+                Power = 180;
+                Torque = 400;
+                type = JednosladTyp.HULAJNOGA;
+                hamulec = true;
+//
+            }
 
-                public void Print_Two_wheeler(){
-                    System.out.println("Nazwa pojazdu: "+Name);
-                    System.out.println("Marka pojazdu: "+Brand);
-                    System.out.println("Pojemnosc silnika : "+Engine_Capacity+" cm3");
-                    System.out.println("rodzaj silnika : "+ Engine_Type.DIESEL);
-                    System.out.println("Moc : "+ Power+"Km");
-                    System.out.println("Moment obrotowy : "+ Torque+ "Nm");
-
-
+            public void Print_Two_wheeler() {
+                System.out.println("Nazwa pojazdu: " + Name);
+                System.out.println("Marka pojazdu: " + Brand);
+                System.out.println("Pojemnosc silnika : " + Engine_Capacity + " cm3");
+                System.out.println("rodzaj silnika : " + Engine_Type.DIESEL);
+                System.out.println("Moc : " + Power + "Km");
+                System.out.println("Moment obrotowy : " + Torque + "Nm");
+                System.out.println("Typ" + type);
+                if (hamulec) {
+                    System.out.println("posiada hamulec");
                 }
             }
         }
     }
-}
-public class Main {
+
+
+
+
+
     public static void main(String[] args) {
+        Locomotive locomotive = new Machine().new Locomotive();
+        Lawnmover lawnmover = new Machine().new Lawnmover();
+        Vehicle vehicle = new Machine().new Vehicle();
+        Vehicle car = new Machine().new Vehicle();
+
+        locomotive.Print_locomotive();
+        lawnmover.Print_lawnmover();
+        vehicle.Print_vehicle();
+        car.Print_vehicle();
+
 
     }
 }
