@@ -78,13 +78,13 @@ class  Machine {
 
     //zadanie4
     static class Vehicle extends Machine {
-        private double Power;
-        private double Torque; //moment obrotowy
-        private static final int max_Number_of_vechicles = 12;
-        private static int Vechicle_id = 1;
+
+        private static double Power;
+        private static double Torque; //moment obrotowy
+        private static final int max_Number_of_vehicles = 12;
+        private static int Vehicle_id = 0;
 
         public Vehicle() {
-
 
             Name = "Ford Mondeo Vignale 2.0";
             Brand = "Ford";
@@ -93,18 +93,18 @@ class  Machine {
             Power = 180;
             Torque = 400;
 
-
         }
 
         public void Print_vehicle() {
-            if (Vechicle_id > max_Number_of_vechicles) {
+            if (Vehicle_id > max_Number_of_vehicles) {
                 System.out.println("Osiągnięto maksymalną liczbę pojazdów.");
-                Vechicle_id--;
-            } else {
-                System.out.println("Utworzono pojazd nr " + Vechicle_id + " z " + max_Number_of_vechicles);
-                //Vechicle_id++;
+                Vehicle_id--;
             }
-            System.out.println("pojazd " + Vechicle_id + " z " + max_Number_of_vechicles);
+            else{
+                Vehicle_id++;
+            }
+
+            System.out.println("pojazd " + Vehicle_id + " z " + max_Number_of_vehicles);
             System.out.println("Nazwa pojazdu: " + Name);
             System.out.println("Marka pojazdu: " + Brand);
             System.out.println("Pojemnosc silnika : " + Engine_Capacity + " cm3");
@@ -125,19 +125,19 @@ class  Machine {
             F
         }
 
-        class Cars extends Vehicle {
+        static class Cars extends Vehicle {
             private Segment segment;
             private String VIN;//17 znaków
 
             public Cars() {
-                Name = "Ford Mondeo Vignale 2.0";
-                Brand = "Ford";
-                Engine_Capacity = 1997;
+                Name = "Mitsubishi ASX Mitsubishi ASX";
+                Brand = "Mitsubishi";
+                Engine_Capacity = 1798;
                 //Engine_type=DIESEL;
-                Power = 180;
+                Power = 150;
                 Torque = 400;
                 VIN = "VF1RFB00059365541";
-                segment = Segment.F;
+                segment = Segment.D;
 
             }
 
@@ -161,7 +161,7 @@ class  Machine {
             MOTORBIKE
         }
 
-        class Two_wheeler extends Vehicle {
+        static class Two_wheeler extends Vehicle {
             private Two_wheeler_type type;
             private boolean hamulec;
 
@@ -199,13 +199,16 @@ class  Machine {
         Locomotive locomotive = new Locomotive();
         Lawnmover lawnmover = new Lawnmover();
         Vehicle vehicle = new Vehicle();
-        Vehicle car = new Vehicle();
+        Vehicle car = new Vehicle.Cars();
+        Vehicle Two_wheeler = new Vehicle.Two_wheeler();
+
 
         locomotive.Print_locomotive();
         lawnmover.Print_lawnmover();
         vehicle.Print_vehicle();
         car.Print_vehicle();
-
-
+        Two_wheeler.Print_vehicle();
+        
+        
     }
 }
