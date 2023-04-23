@@ -1,5 +1,5 @@
 //zadanie1
-class  Machine {
+abstract class Machine {
     protected String Brand;
     protected String Name;
     protected int Engine_Capacity;
@@ -30,7 +30,7 @@ class  Machine {
             System.out.println("Pojemnosc silnika : " + Engine_Capacity + " L");
             System.out.println("rodzaj silnika : " + Engine_Type.HYBRID);
             System.out.println("Max predkosc : " + Speed + " km/H");
-            System.out.println("Przeznaczenie : " + Load + "/n");
+            System.out.println("Przeznaczenie : " + Load);
         }
     }
 
@@ -44,7 +44,6 @@ class  Machine {
             Name = "Kosiarka spalinowa zx3000";
             Brand = "Performance Power";
             Engine_Capacity = 5;
-            //Engine_type
             isMelekser = true;
             isDrive = true;
             Number_of_blades = 4;
@@ -141,7 +140,7 @@ class  Machine {
 
             }
 
-            public void Print_cars() {
+            public void print_cars() {
                 System.out.println("Nazwa pojazdu: " + Name);
                 System.out.println("Marka pojazdu: " + Brand);
                 System.out.println("Pojemnosc silnika : " + Engine_Capacity + " cm3");
@@ -184,7 +183,7 @@ class  Machine {
                 System.out.println("rodzaj silnika : " + Engine_Type.DIESEL);
                 System.out.println("Moc : " + Power + "Km");
                 System.out.println("Moment obrotowy : " + Torque + "Nm");
-                System.out.println("Typ" + type);
+                System.out.println("Typ: " + type);
                 if (hamulec) {
                     System.out.println("posiada hamulec/n");
                 } else {
@@ -199,16 +198,14 @@ class  Machine {
         Locomotive locomotive = new Locomotive();
         Lawnmover lawnmover = new Lawnmover();
         Vehicle vehicle = new Vehicle();
-        Vehicle car = new Vehicle.Cars();
-        Vehicle Two_wheeler = new Vehicle.Two_wheeler();
-
+        Vehicle.Cars car = new Vehicle.Cars();
+        Vehicle.Two_wheeler two_wheeler = new Vehicle.Two_wheeler();
 
         locomotive.Print_locomotive();
         lawnmover.Print_lawnmover();
         vehicle.Print_vehicle();
-        car.Print_vehicle();
-        Two_wheeler.Print_vehicle();
-        
+        two_wheeler.Print_Two_wheeler();
+        car.print_cars();
         
     }
 }
