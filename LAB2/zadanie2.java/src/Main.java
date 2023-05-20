@@ -45,7 +45,7 @@ public class Main {
         }
         System.out.println("Student 1 ma na imie: " + student1.Name + " " + student1.Second_name +
                 ", jego index to: " + student1.index + ", obecnosc: " + student1.presence +
-                "%, i oceny: " + Arrays.toString(student1.grades));
+                "%, i oceny: " + Arrays.toString(student1.grades))  ;
 
     }
 
